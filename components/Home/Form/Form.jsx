@@ -1,3 +1,6 @@
+'use client';
+
+import Bug from '@/components/Shared/Bug/Bug';
 import React, { useReducer } from 'react';
 import { BiPlus } from 'react-icons/bi';
 
@@ -15,6 +18,8 @@ const Form = () => {
     e.preventDefault();
     console.log(formData);
   };
+
+  if (Object.keys(formData).length > 0) return <Bug message={'Error'} />;
 
   return (
     <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
