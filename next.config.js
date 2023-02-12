@@ -5,12 +5,12 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-    // remotePatterns: [
-    //   {
-    //     protocol: 'https',
-    //     hostname: '**ibb.co/*',
-    //   },
-    // ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**randomuser.me/*',
+      },
+    ],
   },
 };
 
