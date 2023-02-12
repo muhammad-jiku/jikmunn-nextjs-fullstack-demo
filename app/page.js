@@ -1,8 +1,9 @@
-import Image from 'next/image';
-import { Inter } from '@next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
+import HomeSection from '@/components/Home/Home';
 
 export default function Home() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <HomeSection />
+    </>
+  );
 }
