@@ -54,10 +54,10 @@ const Table = () => {
           </td>
           <td className="px-16 py-2 flex justify-around gap-5">
             <button className="cursor">
-              <BiEdit size={25} color={'rgb(34,197,94)'}></BiEdit>
+              <BiEdit size={25} color={'rgb(34,197,94)'} />
             </button>
             <button className="cursor">
-              <BiTrashAlt size={25} color={'rgb(244,63,94)'}></BiTrashAlt>
+              <BiTrashAlt size={25} color={'rgb(244,63,94)'} />
             </button>
           </td>
         </tr>
