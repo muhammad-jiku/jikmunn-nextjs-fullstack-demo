@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { BiUserPlus } from 'react-icons/bi';
+import Form from './Form/Form';
 import Table from './Table/Table';
 
 const HomeSection = () => {
@@ -30,7 +31,9 @@ const HomeSection = () => {
           </div>
         </div>
 
-        {/* collapsable form */}
+        <div className="container mx-auto py-5">
+          <Form />
+        </div>
 
         {/* table */}
         <div className="container mx-auto">
