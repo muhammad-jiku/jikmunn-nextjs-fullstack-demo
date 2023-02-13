@@ -1,6 +1,6 @@
 import User from '../models/User';
 
-export async function getUsers(req, res) {
+export async function displayUsers(req, res) {
   try {
     const users = await User.find({});
 
@@ -13,7 +13,7 @@ export async function getUsers(req, res) {
   }
 }
 
-export async function postUser(req, res) {
+export async function addUser(req, res) {
   try {
     const formData = await req.body;
     if (!formData)

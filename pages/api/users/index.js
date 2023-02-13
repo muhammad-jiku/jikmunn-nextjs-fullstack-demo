@@ -1,6 +1,6 @@
 import {
-  getUsers,
-  postUser,
+  displayUsers,
+  addUser,
   removeUser,
   updateUser,
 } from '@/db/controllers/userController';
@@ -16,10 +16,10 @@ export default async function handler(req, res) {
 
   switch (method) {
     case 'GET':
-      getUsers(req, res);
+      displayUsers(req, res);
       break;
     case 'POST':
-      postUser(req, res);
+      addUser(req, res);
       break;
     case 'PUT':
       updateUser(req, res);
