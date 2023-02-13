@@ -13,6 +13,22 @@ export async function displayUsers(req, res) {
   }
 }
 
+export async function displayUser(req, res) {
+  try {
+    const { userId } = await req.query;
+
+    if (userId) {
+      const user = await User.findById(userId);
+      res.status(200).json({
+        data: user,
+      });
+    }
+    res.status(404).json({ error: 'User not Selected...!' });
+  } catch (error) {
+    res.status(404).json({ error: 'Cannot get the User...!' });
+  }
+}
+
 export async function addUser(req, res) {
   try {
     const formData = await req.body;
@@ -33,7 +49,9 @@ export async function updateUser(req, res) {
 
     if (userId && formData) {
       const user = await User.findByIdAndUpdate(userId, formData);
-      res.status(200).json(user);
+      res.status(200).json({
+        data: user,
+      });
     }
     res.status(404).json({ error: 'User Not Selected...!' });
   } catch (error) {
