@@ -1,10 +1,13 @@
 'use client';
 
+import { getUser } from '@/lib/helper';
 import React from 'react';
 import { BiEdit, BiTrashAlt } from 'react-icons/bi';
 import data from '../../../db/data.json';
 
 export default function Table() {
+  getUser().then((res) => console.log(res));
+
   return (
     <table className="min-w-full table-auto">
       <thead>
@@ -42,7 +45,11 @@ function Tr({ id, name, avatar, email, salary, date, status }) {
   return (
     <tr className="bg-gray-50 text-center">
       <td className="px-16 py-2 flex flex-row items-center">
-        <img src={avatar || '#'} alt="avatar" />
+        <img
+          src={avatar || '#'}
+          alt={name}
+          className="h-8 w-8 rounded-full object-cover"
+        />
         <span className="text-center ml-2 font-semibold">
           {name || 'Unknown'}
         </span>
