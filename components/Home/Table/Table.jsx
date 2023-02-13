@@ -7,10 +7,10 @@ import { useQuery } from 'react-query';
 import data from '../../../db/data.json';
 
 export default function Table() {
-  const { isLoading, isError, data, error } = useQuery('users', getUsers);
+  const { data, refetch } = useQuery('users', getUsers);
 
-  if (isLoading) return <div>Employee is Loading...</div>;
-  if (isError) return <div>Got Error {error}</div>;
+  if (refetch) return <div>Employee is Loading...</div>;
+  // if (isError) return <div>Got Error {error}</div>;
 
   return (
     <table className="min-w-full table-auto">
