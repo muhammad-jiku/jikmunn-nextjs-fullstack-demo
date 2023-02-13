@@ -25,3 +25,18 @@ export async function postUser(req, res) {
     return res.status(404).json({ error });
   }
 }
+
+export async function updateUser(req, res) {
+  try {
+    const { userId } = await req.query;
+    const formData = await req.body;
+
+    if (userId && formData) {
+      const user = await User.findByIdAndUpdate(userId, formData);
+      res.status(200).json(user);
+    }
+    res.status(404).json({ error: 'User Not Selected...!' });
+  } catch (error) {
+    res.status(404).json({ error: 'Error While Updating the Data...!' });
+  }
+}
