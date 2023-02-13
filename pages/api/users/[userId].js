@@ -6,9 +6,7 @@ import {
 import databaseConnect from '@/db/utils/dbConnect';
 
 export default async function handler(req, res) {
-  await databaseConnect().catch(() =>
-    res.status(405).json({ error: 'Error in the Connection' })
-  );
+  databaseConnect();
 
   // type of request
   const { method } = req;

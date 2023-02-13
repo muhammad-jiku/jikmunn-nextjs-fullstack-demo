@@ -22,8 +22,9 @@ export async function displayUser(req, res) {
       res.status(200).json({
         data: user,
       });
+    } else {
+      res.status(404).json({ error: 'User not Selected...!' });
     }
-    res.status(404).json({ error: 'User not Selected...!' });
   } catch (error) {
     res.status(404).json({ error: 'Cannot get the User...!' });
   }
@@ -52,8 +53,9 @@ export async function updateUser(req, res) {
       res.status(200).json({
         data: user,
       });
+    } else {
+      res.status(404).json({ error: 'User Not Selected...!' });
     }
-    res.status(404).json({ error: 'User Not Selected...!' });
   } catch (error) {
     res.status(404).json({ error: 'Error While Updating the Data...!' });
   }
@@ -66,9 +68,9 @@ export async function removeUser(req, res) {
     if (userId) {
       const user = await User.findByIdAndDelete(userId);
       return res.status(200).json(user);
+    } else {
+      res.status(404).json({ error: 'User Not Selected...!' });
     }
-
-    res.status(404).json({ error: 'User Not Selected...!' });
   } catch (error) {
     res.status(404).json({ error: 'Error While Deleting the User...!' });
   }
