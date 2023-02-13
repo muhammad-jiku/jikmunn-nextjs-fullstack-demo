@@ -1,5 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
+import { getUsers } from '@/db/controllers/userController';
 import databaseConnect from '@/db/utils/dbConnect';
 
 export default async function handler(req, res) {
@@ -12,7 +11,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case 'GET':
-      res.status(200).json({ method, name: 'GET Request' });
+      getUsers(req, res);
       break;
     case 'POST':
       res.status(200).json({ method, name: 'POST Request' });
@@ -25,7 +24,7 @@ export default async function handler(req, res) {
       break;
     default:
       res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
-      res.status(405).end(`Method ${method} Not Allowd`);
+      res.status(405).end(`Method ${method} Not Allowed!`);
       break;
   }
 }

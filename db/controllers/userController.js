@@ -5,7 +5,9 @@ export async function getUsers(req, res) {
     const users = await User.find({});
 
     if (!users) return res.status(404).json({ error: 'Data not Found' });
-    res.status(200).json(users);
+    res.status(200).json({
+      data: users,
+    });
   } catch (error) {
     res.status(404).json({ error: 'Error While Fetching Data' });
   }
