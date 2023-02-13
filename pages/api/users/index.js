@@ -1,4 +1,4 @@
-import { getUsers } from '@/db/controllers/userController';
+import { getUsers, postUser } from '@/db/controllers/userController';
 import databaseConnect from '@/db/utils/dbConnect';
 
 export default async function handler(req, res) {
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       getUsers(req, res);
       break;
     case 'POST':
-      res.status(200).json({ method, name: 'POST Request' });
+      postUser(req, res);
       break;
     case 'PUT':
       res.status(200).json({ method, name: 'PUT Request' });
