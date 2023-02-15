@@ -1,8 +1,11 @@
 'use client';
 
 import Bug from '@/components/Shared/Bug/Bug';
+import Success from '@/components/Shared/Success/Success';
+import { addingUser, getUsers } from '@/lib/helper';
 import React, { useReducer } from 'react';
 import { BiPlus } from 'react-icons/bi';
+import { useMutation, useQueryClient } from 'react-query';
 
 const formReducer = (state, event) => {
   return {
@@ -12,16 +15,38 @@ const formReducer = (state, event) => {
 };
 
 const AddUser = () => {
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useReducer(formReducer, {});
+  const addMutation = useMutation(addingUser, {
+    onSuccess: () => {
+      queryClient.prefetchQuery('users', getUsers);
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Object.keys(formData).length == 0)
       return console.log("Don't have Form Data");
     console.log(formData);
+    let { firstname, lastname, email, salary, date, status } = formData;
+
+    const model = {
+      name: `${firstname} ${lastname}`,
+      avatar: `https://randomuser.me/api/portraits/men/${Math.floor(
+        Math.random() * 10
+      )}.jpg`,
+      email,
+      salary,
+      date,
+      status: status ?? 'Active',
+    };
+
+    addMutation.mutate(model);
   };
 
-  if (Object.keys(formData).length > 0) return <Bug message={'Error'} />;
+  if (addMutation.isLoading) return <div>Loading!</div>;
+  if (addMutation.isError) return <Bug message={addMutation.error.message} />;
+  if (addMutation.isSuccess) return <Success message={'Added Successfully'} />;
 
   return (
     <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
@@ -100,7 +125,10 @@ const AddUser = () => {
         </div>
       </div>
 
-      <button className="flex justify-center text-md w-2/6 bg-green-500 text-white px-4 py-2 border rounded-md hover:bg-gray-50 hover:border-green-500 hover:text-green-500">
+      <button
+        type="submit"
+        className="flex justify-center text-md w-2/6 bg-green-500 text-white px-4 py-2 border rounded-md hover:bg-gray-50 hover:border-green-500 hover:text-green-500"
+      >
         Add{' '}
         <span className="px-1">
           <BiPlus size={24} />
