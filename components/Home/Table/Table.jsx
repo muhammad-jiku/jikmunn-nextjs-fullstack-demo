@@ -4,9 +4,13 @@ import { getUsers } from '@/lib/helper';
 import React from 'react';
 import { BiEdit, BiTrashAlt } from 'react-icons/bi';
 import { useQuery } from 'react-query';
-import data from '../../../db/data.json';
+import { useSelector } from 'react-redux';
+// import data from '../../../db/data.json';
 
 export default function Table() {
+  const visible = useSelector((state) => state);
+  console.log(visible);
+
   const { isLoading, isError, data, error } = useQuery('users', getUsers);
 
   if (isLoading) return <div>Employee is Loading...</div>;

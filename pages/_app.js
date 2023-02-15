@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import '../styles/globals.css';
 import Head from 'next/head';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { Provider } from 'react-redux';
+import { store } from '@/utils/redux/store';
 // import MainLayout from '@/components/Layout/Layout';
 
 // create a client
@@ -33,9 +35,11 @@ export default function App({ Component, pageProps }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <QueryClientProvider client={queryClient} contextSharing={true}>
-          {/* <MainLayout> */}
-          <Component {...pageProps} />
-          {/* </MainLayout> */}
+          <Provider store={store}>
+            {/* <MainLayout> */}
+            <Component {...pageProps} />
+            {/* </MainLayout> */}
+          </Provider>
         </QueryClientProvider>
       </>
     );
