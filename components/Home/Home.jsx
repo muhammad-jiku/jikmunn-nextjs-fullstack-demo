@@ -1,11 +1,22 @@
 'use client';
 
-import React from 'react';
+import { toggleChangeAction } from '@/utils/redux/reducer';
+import React, { useState } from 'react';
 import { BiUserPlus } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
 import Form from './Form/Form';
 import Table from './Table/Table';
 
 const HomeSection = () => {
+  // const [visible, setVisible] = useState(false);
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
+
+  const handler = () => {
+    // setVisible(!visible);
+    dispatch(toggleChangeAction());
+  };
+
   return (
     <section>
       {/* <Head>
@@ -19,10 +30,12 @@ const HomeSection = () => {
         <h1 className="text-xl md:text-5xl text-center font-bold py-10">
           Employee Management
         </h1>
-
         <div className="container mx-auto flex justify-between py-5 border-b">
           <div className="left flex gap-3">
-            <button className="flex bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-grary-50 hover:border-indigo-500 hover:text-gray-800">
+            <button
+              onClick={handler}
+              className="flex bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-grary-50 hover:border-indigo-500 hover:text-gray-800"
+            >
               Add Employee{' '}
               <span className="px-1">
                 <BiUserPlus size={23}></BiUserPlus>
@@ -30,10 +43,8 @@ const HomeSection = () => {
             </button>
           </div>
         </div>
-
-        <div className="container mx-auto py-5">
-          <Form />
-        </div>
+        {/* collapsable form */}
+        {visible ? <Form /> : <></>}
 
         {/* table */}
         <div className="container mx-auto">
