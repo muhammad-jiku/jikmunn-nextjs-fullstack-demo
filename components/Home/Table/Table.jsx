@@ -1,16 +1,14 @@
 'use client';
 
 import { getUsers } from '@/lib/helper';
+import { toggleChangeAction } from '@/utils/redux/reducer';
 import React from 'react';
 import { BiEdit, BiTrashAlt } from 'react-icons/bi';
 import { useQuery } from 'react-query';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import data from '../../../db/data.json';
 
 export default function Table() {
-  const visible = useSelector((state) => state);
-  console.log(visible);
-
   const { isLoading, isError, data, error } = useQuery('users', getUsers);
 
   if (isLoading) return <div>Employee is Loading...</div>;
@@ -50,6 +48,14 @@ export default function Table() {
 }
 
 function Tr({ id, name, avatar, email, salary, date, status }) {
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
+
+  const onUpdate = () => {
+    dispatch(toggleChangeAction());
+    console.log(visible);
+  };
+
   return (
     <tr className="bg-gray-50 text-center">
       <td className="px-4 py-2 flex flex-row items-center">
@@ -83,11 +89,11 @@ function Tr({ id, name, avatar, email, salary, date, status }) {
         </button>
       </td>
       <td className="px-4 py-2 flex justify-around gap-5">
-        <button className="cursor">
-          <BiEdit size={25} color={'rgb(34,197,94)'}></BiEdit>
+        <button className="cursor" onClick={onUpdate}>
+          <BiEdit size={25} color={'rgb(34,197,94)'} />
         </button>
         <button className="cursor">
-          <BiTrashAlt size={25} color={'rgb(244,63,94)'}></BiTrashAlt>
+          <BiTrashAlt size={25} color={'rgb(244,63,94)'} />
         </button>
       </td>
     </tr>
