@@ -1,24 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useReducer } from 'react';
+import { useSelector } from 'react-redux';
 import AddUser from './AddUser';
 import UpdateUser from './UpdateUser';
 
+const formReducer = (state, event) => {
+  return {
+    ...state,
+    [event.target.name]: event.target.value,
+  };
+};
+
 const Form = () => {
-  // const flag = true;
-  const flag = false;
+  const [formData, setFormData] = useReducer(formReducer, {});
+  const formId = useSelector((state) => state.app.client.formId);
 
   return (
     <div className="container mx-auto py-5">
-      {flag ? (
-        <>
-          <AddUser />
-        </>
-      ) : (
-        <>
-          <UpdateUser />
-        </>
-      )}
+      {formId
+        ? UpdateUser({ formId, formData, setFormData })
+        : AddUser({ formData, setFormData })}
     </div>
   );
 };

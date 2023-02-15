@@ -1,7 +1,7 @@
 'use client';
 
 import { getUsers } from '@/lib/helper';
-import { toggleChangeAction } from '@/utils/redux/reducer';
+import { toggleChangeAction, updateAction } from '@/utils/redux/reducer';
 import React from 'react';
 import { BiEdit, BiTrashAlt } from 'react-icons/bi';
 import { useQuery } from 'react-query';
@@ -47,13 +47,16 @@ export default function Table() {
   );
 }
 
-function Tr({ id, name, avatar, email, salary, date, status }) {
+function Tr({ _id, name, avatar, email, salary, date, status }) {
   const visible = useSelector((state) => state.app.client.toggleForm);
   const dispatch = useDispatch();
 
   const onUpdate = () => {
     dispatch(toggleChangeAction());
     console.log(visible);
+    if (visible) {
+      dispatch(updateAction(_id));
+    }
   };
 
   return (

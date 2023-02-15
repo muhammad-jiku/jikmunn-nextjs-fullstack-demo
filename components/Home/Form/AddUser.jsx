@@ -7,16 +7,8 @@ import React, { useReducer } from 'react';
 import { BiPlus } from 'react-icons/bi';
 import { useMutation, useQueryClient } from 'react-query';
 
-const formReducer = (state, event) => {
-  return {
-    ...state,
-    [event.target.name]: event.target.value,
-  };
-};
-
-const AddUser = () => {
+const AddUser = ({ formData, setFormData }) => {
   const queryClient = useQueryClient();
-  const [formData, setFormData] = useReducer(formReducer, {});
   const addMutation = useMutation(addingUser, {
     onSuccess: () => {
       queryClient.prefetchQuery('users', getUsers);
