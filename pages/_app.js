@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import '../styles/globals.css';
+//  external imports
 import Head from 'next/head';
-import { QueryClientProvider, QueryClient } from 'react-query';
 import { Provider } from 'react-redux';
+import { QueryClientProvider, QueryClient } from 'react-query';
+
+//  internal imports
+import '../styles/globals.css';
 import { store } from '@/utils/redux/store';
 // import MainLayout from '@/components/Layout/Layout';
 

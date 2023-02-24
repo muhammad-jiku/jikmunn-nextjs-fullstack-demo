@@ -1,15 +1,19 @@
 'use client';
 
 import React from 'react';
-import { getUsers } from '@/lib/helper';
+
+//  external imports
+import { useQuery } from 'react-query';
+import { BiEdit, BiTrashAlt } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
+
+//  internal imports
 import {
   deleteAction,
   toggleChangeAction,
   updateAction,
 } from '@/utils/redux/reducer';
-import { useQuery } from 'react-query';
-import { BiEdit, BiTrashAlt } from 'react-icons/bi';
-import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '@/lib/helper';
 // import data from '../../../db/data.json';
 
 export default function Table() {

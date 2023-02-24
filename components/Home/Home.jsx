@@ -1,13 +1,17 @@
 'use client';
 
-import { deletingUser } from '@/lib/helper';
-import { deleteAction, toggleChangeAction } from '@/utils/redux/reducer';
 import React, { useState } from 'react';
-import { BiCheck, BiUserPlus, BiX } from 'react-icons/bi';
+
+//  external imports
 import { useQueryClient } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
+import { BiCheck, BiUserPlus, BiX } from 'react-icons/bi';
+
+//  internal imports
 import Form from './Form/Form';
 import Table from './Table/Table';
+import { deletingUser } from '@/lib/helper';
+import { deleteAction, toggleChangeAction } from '@/utils/redux/reducer';
 
 const HomeSection = () => {
   // const [visible, setVisible] = useState(false);

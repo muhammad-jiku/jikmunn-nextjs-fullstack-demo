@@ -1,11 +1,15 @@
 'use client';
 
+import React, { useReducer } from 'react';
+
+//  external imports
+import { BiPlus } from 'react-icons/bi';
+import { addingUser, getUsers } from '@/lib/helper';
+import { useMutation, useQueryClient } from 'react-query';
+
+//  internal imports
 import Bug from '@/components/Shared/Bug/Bug';
 import Success from '@/components/Shared/Success/Success';
-import { addingUser, getUsers } from '@/lib/helper';
-import React, { useReducer } from 'react';
-import { BiPlus } from 'react-icons/bi';
-import { useMutation, useQueryClient } from 'react-query';
 
 const AddUser = ({ formData, setFormData }) => {
   const queryClient = useQueryClient();

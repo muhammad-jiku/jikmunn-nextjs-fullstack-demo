@@ -1,7 +1,11 @@
 'use client';
 
 import React, { useReducer } from 'react';
+
+//  external import
 import { useSelector } from 'react-redux';
+
+//  internal imports
 import AddUser from './AddUser';
 import UpdateUser from './UpdateUser';
 

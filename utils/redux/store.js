@@ -1,6 +1,9 @@
+//  external import
 import { configureStore } from '@reduxjs/toolkit';
-import listenerMiddleware from './listener';
+
+//  internal imports
 import reducer from './reducer';
+import listenerMiddleware from './listener';
 // import Reducer from './reducer';
 
 export const store = configureStore({

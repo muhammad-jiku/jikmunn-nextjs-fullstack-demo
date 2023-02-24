@@ -1,10 +1,14 @@
 'use client';
 
-import Bug from '@/components/Shared/Bug/Bug';
-import { getUser, getUsers, updatingUser } from '@/lib/helper';
 import React, { useReducer } from 'react';
+
+//  external imports
 import { BiBrush } from 'react-icons/bi';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+
+//  inernal imports
+import Bug from '@/components/Shared/Bug/Bug';
+import { getUser, getUsers, updatingUser } from '@/lib/helper';
 
 const UpdateUser = ({ formId, formData, setFormData }) => {
   const { isLoading, isError, data, error } = useQuery(['users', formId], () =>

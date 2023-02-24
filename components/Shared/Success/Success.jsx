@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+
+//  external import
 import { BiCheck } from 'react-icons/bi';
 
 const Success = ({ message }) => {

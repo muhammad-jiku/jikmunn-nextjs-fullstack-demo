@@ -1,9 +1,12 @@
 'use client';
 
-import { store } from '@/utils/redux/store';
-import { QueryClient, QueryClientProvider } from 'react-query';
+//  external imports
 import { Provider } from 'react-redux';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+//  internal imports
 import '../styles/globals.css';
+import { store } from '@/utils/redux/store';
 
 // create a client
 const queryClient = new QueryClient();

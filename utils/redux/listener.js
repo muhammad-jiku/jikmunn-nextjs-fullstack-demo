@@ -1,4 +1,7 @@
+//  external import
 import { createListenerMiddleware } from '@reduxjs/toolkit';
+
+//  internal imports
 import { toggleChangeAction, updateAction } from './reducer';
 
 const listenerMiddleware = createListenerMiddleware();

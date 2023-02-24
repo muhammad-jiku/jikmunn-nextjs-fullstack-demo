@@ -1,3 +1,4 @@
+//  external import
 import User from '../models/User';
 
 export async function displayUsers(req, res) {
