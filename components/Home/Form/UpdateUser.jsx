@@ -1,14 +1,25 @@
 'use client';
 
 import Bug from '@/components/Shared/Bug/Bug';
-import { getUser } from '@/lib/helper';
+import { getUser, getUsers, updatingUser } from '@/lib/helper';
 import React, { useReducer } from 'react';
 import { BiBrush } from 'react-icons/bi';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 const UpdateUser = ({ formId, formData, setFormData }) => {
   const { isLoading, isError, data, error } = useQuery(['users', formId], () =>
     getUser(formId)
+  );
+  const queryClient = useQueryClient();
+
+  const UpdateMutation = useMutation(
+    (newData) => updatingUser(formId, newData),
+    {
+      onSuccess: async (data) => {
+        // queryClient.setQueryData('users', (old) => [data])
+        queryClient.prefetchQuery('users', getUsers);
+      },
+    }
   );
 
   if (isLoading) return <div>Loading...!</div>;
@@ -22,6 +33,11 @@ const UpdateUser = ({ formId, formData, setFormData }) => {
     if (Object.keys(formData).length == 0)
       return console.log("Don't have Form Data");
     console.log(formData);
+    let userName = `${formData.firstname ?? firstname} ${
+      formData.lastname ?? lastname
+    }`;
+    let updated = Object.assign({}, data, formData, { name: userName });
+    UpdateMutation.mutate(updated);
   };
 
   return (
