@@ -1,10 +1,14 @@
 'use client';
 
-import { getUsers } from '@/lib/helper';
-import { toggleChangeAction, updateAction } from '@/utils/redux/reducer';
 import React from 'react';
-import { BiEdit, BiTrashAlt } from 'react-icons/bi';
+import { getUsers } from '@/lib/helper';
+import {
+  deleteAction,
+  toggleChangeAction,
+  updateAction,
+} from '@/utils/redux/reducer';
 import { useQuery } from 'react-query';
+import { BiEdit, BiTrashAlt } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 // import data from '../../../db/data.json';
 
@@ -59,6 +63,12 @@ function Tr({ _id, name, avatar, email, salary, date, status }) {
     }
   };
 
+  const onDelete = () => {
+    if (!visible) {
+      dispatch(deleteAction(_id));
+    }
+  };
+
   return (
     <tr className="bg-gray-50 text-center">
       <td className="px-4 py-2 flex flex-row items-center">
@@ -95,7 +105,7 @@ function Tr({ _id, name, avatar, email, salary, date, status }) {
         <button className="cursor" onClick={onUpdate}>
           <BiEdit size={25} color={'rgb(34,197,94)'} />
         </button>
-        <button className="cursor">
+        <button className="cursor" onClick={onDelete}>
           <BiTrashAlt size={25} color={'rgb(244,63,94)'} />
         </button>
       </td>
